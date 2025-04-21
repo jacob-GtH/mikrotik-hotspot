@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Al-Sukari Net</title>
+
+  <!-- خطوط وأيقونات -->
+
+
+  <!-- ستايلات -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/education-style.css">
+
+    <!-- سكربتات -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/md5.js"></script>
+    <!-- استيراد أيقونة Font Awesome -->
+  <link rel="stylesheet" href="all.min.css">
+
+
+</head>
+
+<body onload="getCookie(); showClickTime();">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-5" id="loginform">
+        <div class="well text-center">
+          <img src="img/logo2.png" width="200" alt="Issam Sardar" class="mb-3">
+          <div id="clockSpan" class="mb-2"></div>
+
+          <form name="login" action="$(link-login-only)" method="post" onsubmit="return doLogin()">
+            <input type="hidden" name="dst" value="$(link-orig)">
+            <input type="hidden" name="popup" value="true">
+            <input type="text" name="username" id="uname" class="form-control" placeholder="اسم المستخدم" onkeyup="removeWhitespaces('uname')">
+            <input type="password" name="password" id="paswd" class="form-control" placeholder="كلمة المرور" onkeyup="removeWhitespaces('paswd')">
+            <div class="text-right">
+              <input type="checkbox" id="remember"> تذكرني
+            </div>
+            <p id="error-msg" class="text-danger text-center"></p>
+            <input type="submit" value="تسجيل الدخول" class="btn btn-lg btn-success btn-block mt-3">
+          </form>
+        </div>
+      </div>
+
+      <div class="col-md-7 text-center" id="content">
+        <p><b><span id="highlight" style="color:#e74c3c;">﴿ إِنَّ ٱلصَّلَوٰةَ كَانَتۡ عَلَى ٱلۡمُؤۡمِنِينَ كِتَٰبٗا مَّوۡقُوتٗا ﴾</span></b></p>
+        <button class="toggle-dark" onclick="toggleDarkMode()">🌓 الوضع الليلي</button>
+
+        <div class="education-section">
+          <div class="education-card rakaaat">
+            <h3><i class="fas fa-mosque"></i> ركعات الصلوات</h3>
+            <p>الفجر: ركعتان</p>
+            <p>الظهر: أربع ركعات</p>
+            <p>العصر: أربع ركعات</p>
+            <p>المغرب: ثلاث ركعات</p>
+            <p>العشاء: أربع ركعات</p>
+          </div>
+
+          <div class="education-card arkan">
+            <h3><i class="fas fa-kaaba"></i> أركان الإسلام</h3>
+            <p>الشهادتان: لا إله إلا الله محمد رسول الله</p>
+            <p>الصلاة، الزكاة، الصيام، الحج</p>
+          </div>
+
+          <div class="education-card five-before-five">
+            <h3><i class="fas fa-hourglass-half"></i> اغتنم خمساً قبل خمس</h3>
+            <p>شبابك قبل هرمك</p>
+            <p>صحتك قبل سقمك</p>
+            <p>غناك قبل فقرك</p>
+            <p>فراغك قبل شغلك</p>
+            <p>حياتك قبل موتك</p>
+          </div>
+
+          <div class="education-card rosol">
+            <h3><i class="fas fa-user-tie"></i> أولي العزم من الرسل</h3>
+            <p>محمد ﷺ</p>
+            <p>إبراهيم عليه السلام</p>
+            <p>موسى عليه السلام</p>
+            <p>عيسى عليه السلام</p>
+            <p>نوح عليه السلام</p>
+          </div>
+        </div>
+
+        <img src="img/rm.png" width="200" alt="issamsardar" style="margin-top: 20px;">
+      </div>
+    </div>
+  </div>
+
+  <div id="footer" class="text-center">
+    <p>أسرة شبكة السكري نت تتمنى لكم يوماً جميلاً داعية المولى عز وجل أن يفرج عن أهلنا في غزة</p>
+    <p>تصميم وبرمجة: <strong>يعقوب القاضي</strong> | جميع الحقوق محفوظة © 2025</p>
+  </div>
+
+      <!-- زر عائم -->
+ <button type="button" class="floating-btn" data-bs-toggle="modal" data-bs-target="#priceModal">
+
+    <i class="fas fa-info-circle"></i>
+  </button>
+
+  <!-- نافذة منبثقة تحتوي على جدول الأسعار -->
+ <!-- نافذة منبثقة - جدول الأسعار -->
+<div class="modal fade" id="priceModal" tabindex="-1" role="dialog" aria-labelledby="priceModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content" style="z-index: 1055;">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="priceModalLabel">جدول الأسعار</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+      </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered table-striped table-hover text-center">
+          <thead class="thead-dark">
+            <tr>
+              <th>الباقة</th>
+              <th>السعر</th>
+              <th>الوقت</th>
+              <th>المدة</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>باقة 400 ميجا</td>
+              <td>100 ريال</td>
+              <td>3 ساعات</td>
+              <td>4 ايام</td>
+            </tr>
+            <tr>
+              <td>باقة 1 جيجا</td>
+              <td>250 ريال</td>
+              <td>8 ساعات</td>
+              <td>10 ايام</td>
+            </tr>
+            <tr>
+              <td>باقة 2 جيجا</td>
+              <td>500 ريال</td>
+              <td>20 ساعات</td>
+              <td>15 يوم</td>
+            </tr>
+            <tr>
+              <td>باقة 4 جيجا</td>
+              <td>1000 ريال</td>
+              <td>50 ساعات</td>
+              <td>30 يوم</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <form name="sendin" action="$(link-login-only)" method="post" style="display: none;">
+    <input type="hidden" name="username">
+    <input type="hidden" name="password">
+    <input type="hidden" name="dst" value="$(link-orig)">
+    <input type="hidden" name="popup" value="true">
+  </form>
+
+  <script>
+    function showClickTime() {
+      const clockSpan = document.getElementById("clockSpan");
+      setInterval(() => {
+        const now = new Date();
+        let hours = now.getHours();
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const seconds = now.getSeconds().toString().padStart(2, '0');
+        const period = hours >= 12 ? "مساءً" : "صباحاً";
+        if (hours > 12) hours -= 12;
+        if (hours === 0) hours = 12;
+        clockSpan.innerHTML = `<b>الساعة ${hours}:${minutes}:${seconds} ${period}</b>`;
+      }, 1000);
+    }
+
+    function removeWhitespaces(id) {
+      const input = document.getElementById(id);
+      input.value = input.value.toLowerCase().replace(/[^a-z0-9]/g, "");
+    }
+
+    function rem(){
+  var uname = document.getElementById('uname').value;
+  var paswd = document.getElementById('paswd').value;
+  var rem   = document.getElementById('remember').checked;
+
+  if(rem == true){
+    var date = new Date();
+    date.setTime(date.getTime() + (259200 * 1000));  // 3 أيام
+    var expire = date.toUTCString();
+
+    // تخزين بيانات الكوكيز
+    document.cookie = 'uname=' + encodeURIComponent(uname) + ';expires=' + expire + ';path=/;secure;HttpOnly';
+    document.cookie = 'paswd=' + encodeURIComponent(paswd) + ';expires=' + expire + ';path=/;secure;HttpOnly';
+  }
+}
+
+function getCookie() {
+  var uname = "", paswd = "";
+  var SP = document.cookie.split(';');
+
+  // البحث في الكوكيز عن "uname" و "paswd"
+  SP.forEach(function(item) {
+    var name_value = item.trim();
+    if (name_value.indexOf("uname=") !== -1) {
+      uname = decodeURIComponent(name_value.split('=')[1]);
+    }
+    if (name_value.indexOf("paswd=") !== -1) {
+      paswd = decodeURIComponent(name_value.split('=')[1]);
+    }
+  });
+
+  // إذا كان هناك اسم مستخدم وكلمة مرور في الكوكيز
+  if (uname && paswd) {
+    var date = new Date();
+    date.setTime(date.getTime() + (5 * 1000));  // مدة الكوكيز
+    var expires = date.toUTCString();
+
+    // إرسال البيانات عبر POST
+    var form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'login';  // ضع هنا الرابط الذي تود إرسال البيانات إليه
+    var usernameField = document.createElement('input');
+    usernameField.type = 'hidden';
+    usernameField.name = 'username';
+    usernameField.value = uname;
+    form.appendChild(usernameField);
+
+    var passwordField = document.createElement('input');
+    passwordField.type = 'hidden';
+    passwordField.name = 'password';
+    passwordField.value = paswd;
+    form.appendChild(passwordField);
+
+    document.body.appendChild(form);
+    form.submit();
+  }
+}
+
+getCookie();
+    
+
+    function doLogin() {
+      document.sendin.username.value = document.login.username.value;
+      document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+      document.sendin.submit();
+      return false;
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+
+    window.onload = function () {
+    const errorMsg = document.getElementById("error-msg");
+    const error = "$(error)";
+    if (error) {
+      if (error === "simultaneous-session-limit-reached") {
+        errorMsg.textContent = "هذا الحساب مستخدم على جهاز آخر.";
+      } else if (error === "invalid-password") {
+        errorMsg.textContent = "كلمة المرور غير صحيحة.";
+      } else if (error === "no-valid-profile") {
+        errorMsg.textContent = "انتهت صلاحية الحساب.";
+      } else {
+        errorMsg.textContent = "خطأ لا تحاول عبثاَ: " + error;
+      }
+    }
+  };
+  </script>
+</body>
+
+</html>
